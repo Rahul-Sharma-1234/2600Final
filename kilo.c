@@ -442,6 +442,11 @@ void editorInsertRow(int at, char *s, size_t len) {
   E.dirty++;
 }
 
+void editorFreeRow(erow *row) {
+  free(row->render);
+  free(row->chars);
+  free(row->hl);
+}
 
 
 
