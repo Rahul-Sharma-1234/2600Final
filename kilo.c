@@ -12,8 +12,10 @@
 
 /*** data ***/
 
-
-struct termios orig_termios;
+struct editorConfig {
+  struct termios orig_termios;
+};
+struct editorConfig E;
 
 /*** terminal ***/
 
