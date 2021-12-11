@@ -547,11 +547,13 @@ char *editorRowsToString(int *buflen) {
 }
 
 
+
 void editorOpen(char *filename) {
   free(E.filename);
   E.filename = strdup(filename);
   
-   editorSelectSyntaxHighlight();
+
+  editorSelectSyntaxHighlight();
 
 
   FILE *fp = fopen(filename, "r");
