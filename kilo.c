@@ -296,7 +296,7 @@ void editorUpdateSyntax(erow *row) {
         continue;
       }
     }
-    
+
     if (prev_sep) {
       int j;
       for (j = 0; keywords[j]; j++) {
@@ -324,6 +324,19 @@ void editorUpdateSyntax(erow *row) {
   row->hl_open_comment = in_comment;
   if (changed && row->idx + 1 < E.numrows)
     editorUpdateSyntax(&E.row[row->idx + 1]);
+}
+
+int editorSyntaxToColor(int hl) {
+  switch (hl) {
+    case HL_COMMENT:
+    case HL_MLCOMMENT: return 36;
+    case HL_KEYWORD1: return 33;
+    case HL_KEYWORD2: return 32;
+    case HL_STRING: return 35;
+    case HL_NUMBER: return 31;
+    case HL_MATCH: return 34;
+    default: return 37;
+  }
 }
 
 /*** append buffer ***/
