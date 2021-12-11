@@ -882,6 +882,7 @@ void editorMoveCursor(int key) {
   }
 }
 
+
 char *editorPrompt(char *prompt, void (*callback)(char *, int)) {
   size_t bufsize = 128;
   char *buf = malloc(bufsize);
@@ -919,6 +920,7 @@ char *editorPrompt(char *prompt, void (*callback)(char *, int)) {
     if (callback) callback(buf, c);
   }
 }
+
 
 
 void editorProcessKeypress() {
