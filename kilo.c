@@ -418,6 +418,33 @@ void editorUpdateRow(erow *row) {
 }
 
 
+void editorInsertRow(int at, char *s, size_t len) {
+  if (at < 0 || at > E.numrows) return;
+
+  E.row = realloc(E.row, sizeof(erow) * (E.numrows + 1));
+  memmove(&E.row[at + 1], &E.row[at], sizeof(erow) * (E.numrows - at));
+  for (int j = at + 1; j <= E.numrows; j++) E.row[j].idx++;
+
+  E.row[at].idx = at;
+
+  E.row[at].size = len;
+  E.row[at].chars = malloc(len + 1);
+  memcpy(E.row[at].chars, s, len);
+  E.row[at].chars[len] = '\0';
+
+  E.row[at].rsize = 0;
+  E.row[at].render = NULL;
+  E.row[at].hl = NULL;
+  E.row[at].hl_open_comment = 0;
+  editorUpdateRow(&E.row[at]);
+
+  E.numrows++;
+  E.dirty++;
+}
+
+
+
+
 /*** append buffer ***/
 struct abuf {
   char *b;
