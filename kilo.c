@@ -168,7 +168,17 @@ int editorReadKey() {
           case 'F': return END_KEY;
         }
       }
-
+ } else if (seq[0] == 'O') {
+      switch (seq[1]) {
+        case 'H': return HOME_KEY;
+        case 'F': return END_KEY;
+      }
+    }
+    return '\x1b';
+  } else {
+    return c;
+  }
+}
 
 int getCursorPosition(int *rows, int *cols) {
   char buf[32];
