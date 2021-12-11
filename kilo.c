@@ -546,6 +546,12 @@ char *editorRowsToString(int *buflen) {
   return buf;
 }
 
+
+void editorOpen(char *filename) {
+  free(E.filename);
+  E.filename = strdup(filename);
+  
+
 /*** append buffer ***/
 struct abuf {
   char *b;
