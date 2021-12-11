@@ -485,6 +485,18 @@ void editorRowDelChar(erow *row, int at) {
   E.dirty++;
 }
 
+/*** editor operations ***/
+
+
+void editorInsertChar(int c) {
+  if (E.cy == E.numrows) {
+    editorInsertRow(E.numrows, "", 0);
+  }
+  editorRowInsertChar(&E.row[E.cy], E.cx, c);
+  E.cx++;
+}
+
+
 /*** append buffer ***/
 struct abuf {
   char *b;
